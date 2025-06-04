@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://wise.com/imaginary-v2/1e532c6a4fd9ca2c03ff1b267c282ef2.jpg?width=1200') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    backdrop-filter: brightness(90%);
+  }
+  
+  .title {
+    margin-top: 50px;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 3px 3px 6px #000;
+  }
+  
+  .box-container {
+    display: flex;
+    gap: 80px;
+    margin-top: 100px;
+  }
+  
+  .box {
+    padding: 30px 40px;
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+    cursor: pointer;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .box img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+  }
+  
+  .box span {
+    font-size: 22px;
+  }
+  
+  /* Profile Box - Blue */
+  .profile-box {
+    background-color: rgba(0, 123, 255, 0.9);
+  }
+  
+  .profile-box:hover {
+    background-color: rgba(0, 102, 204, 1);
+    transform: scale(1.08);
+  }
+  
+  /* Cast Vote Box - Green */
+  .vote-box {
+    background-color: rgba(76, 175, 80, 0.9);
+  }
+  
+  .vote-box:hover {
+    background-color: rgba(69, 160, 73, 1);
+    transform: scale(1.08);
+  }
+  

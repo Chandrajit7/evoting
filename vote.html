@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cast Vote</title>
+  <link rel="stylesheet" href="vote.css">
+</head>
+<body>
+
+<div class="container">
+  <h2>Cast Your Vote</h2>
+  <h3>Constituency: Kolkata South</h3>
+
+  <!-- Form Starts Here -->
+  <form id="voteForm">
+    <table>
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Candidate</th>
+          <th>Party</th>
+          <th>Symbol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="radio" name="vote" class="vote-checkbox" value="Mamata Banerjee|TMC|https://upload.wikimedia.org/wikipedia/commons/5/50/All_India_Trinamool_Congress_logo.svg"></td>
+          <td>Mamata Banerjee</td>
+          <td>TMC</td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/50/All_India_Trinamool_Congress_logo.svg" alt="Party A" class="party-symbol"></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="vote" class="vote-checkbox" value="Narendra Modi|BJP|https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifmGniUR7jTxCdewGVb1X4eFEoF57-VLMjLLhu8TrKhgSUh0aGPH0eVnhBQzAzZPEoEgEoL9sxgG5rXjJmR6eOfmVEupqLy_fWdUXZQNh-Se0OPWpH-7NgiASpgHu8WnyV90Nzk4MKz84/w1200-h630-p-k-no-nu/BJP_logo.jpg"></td>
+          <td>Narendra Modi</td>
+          <td>BJP</td>
+          <td><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEifmGniUR7jTxCdewGVb1X4eFEoF57-VLMjLLhu8TrKhgSUh0aGPH0eVnhBQzAzZPEoEgEoL9sxgG5rXjJmR6eOfmVEupqLy_fWdUXZQNh-Se0OPWpH-7NgiASpgHu8WnyV90Nzk4MKz84/w1200-h630-p-k-no-nu/BJP_logo.jpg" alt="Party B" class="party-symbol"></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="vote" class="vote-checkbox" value="Ali Khan|CMIP|https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Cpm_election_symbol.svg/800px-Cpm_election_symbol.svg.png"></td>
+          <td>Ali Khan</td>
+          <td>CMIP</td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Cpm_election_symbol.svg/800px-Cpm_election_symbol.svg.png" alt="Party C" class="party-symbol"></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="vote" class="vote-checkbox" value="Riya Sen|INC|https://freesvg.org/img/hand_congress.png"></td>
+          <td>Riya Sen</td>
+          <td>INC</td>
+          <td><img src="https://freesvg.org/img/hand_congress.png" alt="Party D" class="party-symbol"></td>
+        </tr>
+        <tr>
+          <td><input type="radio" name="vote" class="vote-checkbox" value="N/A|Nota|https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/NOTA_Option_Logo.png/1209px-NOTA_Option_Logo.png"></td>
+          <td>N/A</td>
+          <td>Nota</td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/NOTA_Option_Logo.png/1209px-NOTA_Option_Logo.png" alt="Party D" class="party-symbol"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+    <button type="button" class="btn" onclick="submitVote()">Cast Vote</button>
+  </form>
+  <!-- Form Ends Here -->
+
+  <!-- Modal -->
+  <div id="voteModal" class="modal">
+    <div class="modal-content">
+      <h3>Confirm Your Vote</h3>
+      <p id="modalCandidate"></p>
+      <p id="modalParty"></p>
+      <img id="modalSymbol" src="" alt="Party Symbol" />
+      <br>
+      <button onclick="storeVoteAndRedirect()" class="link-button">Confirm</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let selectedVote = null;
+
+  function submitVote() {
+    const vote = document.querySelector('input[name="vote"]:checked');
+    
+    if (vote) {
+      const [candidate, party, symbol] = vote.value.split('|');
+      selectedVote = { candidate, party, symbol };
+
+      document.getElementById('modalCandidate').innerText = "Candidate: " + selectedVote.candidate;
+      document.getElementById('modalParty').innerText = "Party: " + selectedVote.party;
+      document.getElementById('modalSymbol').src = selectedVote.symbol;
+
+      document.getElementById('voteModal').style.display = 'flex';
+    } else {
+      alert("Please select a candidate first.");
+    }
+  }
+
+  function storeVoteAndRedirect() {
+    const partyName = selectedVote.party;
+    const partySymbol = selectedVote.symbol;
+
+    localStorage.setItem("votedParty", partyName);
+    localStorage.setItem("votedSymbol", partySymbol);
+    window.location.href = "confirmation.html";
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('voteModal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+</body>
+</html>

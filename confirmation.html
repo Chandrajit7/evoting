@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vote Confirmation</title>
+  <link rel="stylesheet" href="confirmation.css">
+</head>
+<body>
+
+  <h2>Thank You for Voting!</h2>
+  <img id="partyLogo" src="" alt="Party Symbol">
+  <h3 id="partyName">You voted for:</h3>
+
+  <script>
+    const party = localStorage.getItem("votedParty");
+    const symbol = localStorage.getItem("votedSymbol");
+
+    if (party && symbol) {
+      document.getElementById("partyName").textContent = "You voted for: " + party;
+      document.getElementById("partyLogo").src = symbol;
+    }
+  </script>
+
+</body>
+</html>
